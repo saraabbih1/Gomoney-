@@ -5,44 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paramètres du prêt</title>
   <link rel="stylesheet" href="src/input.css">
-    <link rel="stylesheet" href="src/output.css" />
-
+  <link rel="stylesheet" href="src/output.css">
 </head>
+
 <body class="bg-gray-900 flex items-center justify-center min-h-screen font-sans">
 
-  <div class="bg-gray-800 bg-opacity-80 p-8 rounded-xl shadow-lg w-full max-w-sm">
+  <!-- PAGE FORMULAIRE -->
+  <div id="formPage" class="bg-gray-800 bg-opacity-80 p-8 rounded-xl shadow-lg w-full max-w-sm">
     <h1 class="text-yellow-300 text-2xl font-bold mb-6 text-center">Paramètres du prêt</h1>
 
-    <form class="space-y-4">
+    <form id="loanForm" class="space-y-4">
+
       <div>
         <label class="block text-gray-200 mb-1">Type du prêt :</label>
-       <select class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
-            <option>maison</option>
-            <option>Appartement</option>
-            <option>Terrain</option>
-            <option>Petite entreprise</option>
-            <option>Prêt personnel (cash)</option>
-          </select>
+        <select id="typePret" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+          <option>Maison</option>
+          <option>Appartement</option>
+          <option>Terrain</option>
+          <option>Petite entreprise</option>
+          <option>Prêt personnel (cash)</option>
+        </select>
       </div>
 
       <div>
         <label class="block text-gray-200 mb-1">Montant du prêt souhaité :</label>
-        <input type="text" placeholder="Ex: 10000" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+        <input id="montantPret" type="number" placeholder="Ex: 100000" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
       </div>
 
       <div>
         <label class="block text-gray-200 mb-1">Salaire mensuel :</label>
-        <input type="text" placeholder="Ex: 5000" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+        <input id="salaire" type="number" placeholder="Ex: 5000" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
       </div>
 
       <div class="flex space-x-2">
         <div class="flex-1">
           <label class="block text-gray-200 mb-1">Durée :</label>
-          <input type="text" placeholder="Ex: 2" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+          <input id="duree" type="number" placeholder="Ex: 2" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
         </div>
+
         <div class="flex-1">
-          <label class="block text-gray-200 mb-1 invisible">un/mo</label>
-          <select class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+          <label class="block text-gray-200 mb-1 invisible">unité</label>
+          <select id="uniteDuree" class="w-full px-4 py-2 rounded-md bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-300">
             <option>ans</option>
             <option>mois</option>
           </select>
@@ -52,33 +55,34 @@
       <button type="submit" class="w-full bg-yellow-300 text-gray-900 font-semibold py-2 rounded-md hover:bg-yellow-400 transition">Calculer</button>
     </form>
   </div>
-  <div>
-    
-  </div>
+
+  <!-- PAGE RESULTAT -->
   <div id="resultPage" class="hidden bg-gray-800 bg-opacity-80 p-8 rounded-xl shadow-lg w-full max-w-sm text-gray-200">
+
     <div class="flex items-center mb-4">
       <svg class="w-6 h-6 text-yellow-300 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
       </svg>
       <h2 class="text-yellow-300 font-semibold text-lg">Prêt accessible</h2>
     </div>
+
     <p class="text-gray-300 text-sm mb-6">Ce prêt est compatible avec votre situation financière.</p>
 
     <div class="space-y-3 mb-6">
       <div class="flex justify-between">
-        <span class="text-gray-300">Type de prêt</span>
+        <span>Type de prêt</span>
         <span id="r_type" class="font-medium text-yellow-300">-</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-gray-300">Montant demandé</span>
+        <span>Montant demandé</span>
         <span id="r_montant" class="font-medium text-yellow-300">-</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-gray-300">Durée</span>
+        <span>Durée</span>
         <span id="r_duree" class="font-medium text-yellow-300">-</span>
       </div>
       <div class="flex justify-between">
-        <span class="text-gray-300">Taux d'intérêt</span>
+        <span>Taux d'intérêt</span>
         <span id="r_taux" class="font-medium text-yellow-300">3.2%</span>
       </div>
     </div>
@@ -87,22 +91,92 @@
       Mensualité : <span id="r_mensualite">-</span> MAD
     </div>
 
-    <div class="flex justify-between text-gray-300 mb-2">
+    <div class="flex justify-between mb-2">
       <span>Total des intérêts</span>
       <span id="r_interets" class="text-yellow-300">-</span> MAD
     </div>
 
-    <div class="flex justify-between font-semibold text-gray-100 border-t border-gray-700 pt-2">
+    <div class="flex justify-between font-semibold border-t border-gray-700 pt-2">
       <span>Montant total à rembourser</span>
       <span id="r_total" class="text-yellow-300">-</span> MAD
     </div>
 
-    <button id="retourBtn"
-      class="mt-6 w-full bg-yellow-300 text-gray-900 font-semibold py-2 rounded-md hover:bg-yellow-400 transition">
+    <button id="retourBtn" class="mt-6 w-full bg-yellow-300 text-gray-900 font-semibold py-2 rounded-md hover:bg-yellow-400 transition">
       Retour
     </button>
   </div>
+  <!-- Page refus -->
+<div id="refusPage" class="hidden bg-gray-800 bg-opacity-80 p-8 rounded-xl shadow-lg w-full max-w-sm text-gray-200">
+  <div class="flex items-center mb-4">
+    <svg class="w-6 h-6 text-red-400 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    <h2 class="text-red-400 font-semibold text-lg">Prêt refusé</h2>
+  </div>
 
+  <p class="text-gray-300 text-sm mb-6">
+    La mensualité dépasse 40% de votre salaire. Ce prêt n'est pas accessible dans votre situation actuelle.
+  </p>
+
+  <button id="retourRefus" class="mt-6 w-full bg-red-400 text-gray-900 font-semibold py-2 rounded-md hover:bg-red-500 transition">
+    Retour
+  </button>
+</div>
+
+
+  <script>
+  const formPage = document.getElementById("formPage");
+  const resultPage = document.getElementById("resultPage");
+  const form = document.getElementById("loanForm");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("retourRefus").addEventListener("click", () => {
+  refusPage.classList.add("hidden");
+  formPage.classList.remove("hidden");
+});
+
+
+    const type = document.getElementById("typePret").value;
+    const montant = parseFloat(document.getElementById("montantPret").value);
+    const duree = parseFloat(document.getElementById("duree").value);
+    const unite = document.getElementById("uniteDuree").value;
+    const salaire = parseFloat(document.getElementById("salaire").value);
+
+    const taux = 0.032;
+    const nbMois = unite === "ans" ? duree * 12 : duree;
+
+    const mensualite = ((montant * taux / 12) / (1 - Math.pow(1 + taux / 12, -nbMois))).toFixed(2);
+    const total = (mensualite * nbMois).toFixed(2);
+    const interets = (total - montant).toFixed(2);
+
+    const limite = salaire * 0.4;
+
+    if (mensualite > limite) {
+  formPage.classList.add("hidden");
+  resultPage.classList.add("hidden");
+  refusPage.classList.remove("hidden");
+  return;
+}
+
+
+    document.getElementById("r_type").textContent = type;
+    document.getElementById("r_montant").textContent = montant + " MAD";
+    document.getElementById("r_duree").textContent = duree + " " + unite;
+    document.getElementById("r_mensualite").textContent = mensualite;
+    document.getElementById("r_interets").textContent = interets;
+    document.getElementById("r_total").textContent = total;
+
+    formPage.classList.add("hidden");
+    resultPage.classList.remove("hidden");
+  });
+
+  document.getElementById("retourBtn").addEventListener("click", () => {
+    resultPage.classList.add("hidden");
+    formPage.classList.remove("hidden");
+  });
+
+  </script>
 
 </body>
 </html>
